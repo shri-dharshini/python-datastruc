@@ -1,7 +1,7 @@
 '''filo- first in is 1. last in is 4.
 stack 1->2->3->4->/
 1. none terminated end is at the top (last in)
-    adding 4 is O(1)- no need to modify other nodes. 
+    adding 4 is O(1)- no need to modify other nodes, if we maintain a reference to last added node (tail of linked list)
     removing 4 is O(n)- we need to traverse the ll and change next of 3 to none.
 
 stack /<-1<-2<-3<-4
@@ -44,8 +44,8 @@ class Stack:
             return None
         else:
             temp=self.top
-            temp.next=None
             self.top=self.top.next
+            temp.next=None
             self.height-=1
             return temp.value
 
@@ -56,3 +56,4 @@ s1.print_stack()
 print("-"*20)
 val=s1.pop_stack()
 s1.print_stack()
+
