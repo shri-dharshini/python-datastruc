@@ -44,6 +44,7 @@ class Stack:
             return None
         else:
             temp=self.top
+            temp.next=None
             self.top=self.top.next
             self.height-=1
             return temp.value
