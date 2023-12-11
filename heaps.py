@@ -86,6 +86,24 @@ class MaxHeap:
         self.sink_down(0) #maxindex=0
         return max_value
 
+def find_kth_smallest(nums,k):
+    heap1=MaxHeap()
+    for i in range(len(nums)):
+        heap1.insert(nums[i])
+        if len(heap1.heap)>k: #only keep k elements in the heap
+            heap1.remove()
+    return heap1.remove() #removes the max element- since there are only k elements we will get kth smallest element
+
+
+#return a list of the same length, where each element in the output list is the maximum number seen so far in the input list.
+def stream_max(nums):
+    heap1=MaxHeap()
+    max_val=[]
+    for i in range(len(nums)):
+        heap1.insert(nums[i])
+        max_val.append(heap1.heap[0]) #maximum value seen so far is the 0th element in heap list. we append that to max_val list
+    return max_val
+
 '''priority queue implementation is most efficient with heaps. 
 can also use tree, but the tree is not always balanced and may lead to edge cases where insertion and removal becomes O(n)
 a heap is always complete hence always balanced
@@ -100,6 +118,16 @@ heap1.insert(45)
 print(heap1.heap)
 print()
 
+heap1.insert(100)
+print(heap1.heap)
+
+heap1.remove()
+print(heap1.heap)
+
+
+print(find_kth_smallest([31,21,11,51,61,41],2))
+
+print(stream_max([2,4,2,1,4,5,4,3,6,8,4,3,2]))
 heap1.insert(100)
 print(heap1.heap)
 
